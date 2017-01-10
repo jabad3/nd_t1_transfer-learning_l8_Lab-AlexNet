@@ -6,8 +6,6 @@ from sklearn.utils import shuffle
 from alexnet import AlexNet
 
 nb_classes = 43
-epochs = 10
-batch_size = 128
 
 with open('./train.p', 'rb') as f:
     data = pickle.load(f)
@@ -37,6 +35,9 @@ init_op = tf.initialize_all_variables()
 preds = tf.arg_max(logits, 1)
 accuracy_op = tf.reduce_mean(tf.cast(tf.equal(preds, labels), tf.float32))
 
+# Hypers
+epochs = 10
+batch_size = 128
 
 def eval_on_data(X, y, sess):
     total_acc = 0
