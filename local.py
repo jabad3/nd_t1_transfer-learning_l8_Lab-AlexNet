@@ -11,6 +11,7 @@ im1 = im1 - np.mean(im1)
 im2 = imread("stop.jpg").astype(np.float32)
 im2 = im2 - np.mean(im2)
 
+nb_classes = 43
 def modified(features):
     resized = tf.image.resize_images(features, (227, 227))
 
@@ -38,8 +39,8 @@ with tf.Session() as sess:
     new_saver = tf.train.import_meta_graph('alexnet.meta')
     new_saver.restore(sess, tf.train.latest_checkpoint('./'))
 
-    res = tf.arg_max(logits, 1)
-    sess.run(res, feed_dict={features:[im1, im2]})
+    #res = tf.arg_max(logits, 1)
+    results = sess.run(logits, feed_dict={features:[im1, im2]})
 
 
-print(res)
+print(results)
