@@ -47,7 +47,7 @@ preds = tf.arg_max(logits, 1)
 accuracy_op = tf.reduce_mean(tf.cast(tf.equal(preds, labels), tf.float32))
 
 # Hypers
-epochs = 1
+epochs = 10
 batch_size = 128
 
 def eval_on_data(X, y, sess):
