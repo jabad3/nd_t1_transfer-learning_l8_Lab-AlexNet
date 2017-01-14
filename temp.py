@@ -1,3 +1,8 @@
+from scipy.misc import imread
+import time
+import tensorflow as tf
+import numpy as np
+
 # Read Images
 im1 = imread("construction.jpg").astype(np.float32)
 im1 = im1 - np.mean(im1)
