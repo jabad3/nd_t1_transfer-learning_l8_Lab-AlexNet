@@ -14,7 +14,7 @@ im2 = im2 - np.mean(im2)
 nb_classes = 43
 def modified(features):
     resized = tf.image.resize_images(features, (227, 227))
-
+    
     # TODO: pass placeholder as first argument to `AlexNet`.
     fc7 = AlexNet(resized, feature_extract=True)
 
@@ -35,7 +35,8 @@ features = tf.placeholder(tf.float32, (None, 32, 32, 3))
 logits = modified(features)
 
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
+    #sess.run(tf.global_variables_initializer())
+    sess.run(tf.initialize_all_variables())
     new_saver = tf.train.import_meta_graph('alexnet.meta')
     new_saver.restore(sess, tf.train.latest_checkpoint('./'))
 
